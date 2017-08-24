@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-24T05:24:40.106Z</updated>
+  <updated>2017-08-24T05:30:04.675Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,110 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Springboot(一)</title>
+    <link href="http://yoursite.com/2017/08/24/Springboot-%E4%B8%80/"/>
+    <id>http://yoursite.com/2017/08/24/Springboot-一/</id>
+    <published>2017-08-24T05:29:00.000Z</published>
+    <updated>2017-08-24T05:30:04.675Z</updated>
+    
+    <content type="html"><![CDATA[<p>什么是spring boot</p>
+<p>Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是spring boot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合了所有的jar包，spring boot整合了所有的框架（不知道这样比喻是否合适）。</p>
+<p>使用spring boot有什么好处</p>
+<p>其实就是简单、快速、方便！平时如果我们需要搭建一个spring web项目的时候需要怎么做呢？</p>
+<p>1）配置web.xml，加载spring和spring mvc<br>2）配置数据库连接、配置spring事务<br>3）配置加载配置文件的读取，开启注解<br>4）配置日志文件<br>…<br>配置完成之后部署tomcat 调试<br>…<br>现在非常流行微服务，如果我这个项目仅仅只是需要发送一个邮件，如果我的项目仅仅是生产一个积分；我都需要这样折腾一遍!</p>
+<p>但是如果使用spring boot呢？<br>很简单，我仅仅只需要非常少的几个配置就可以迅速方便的搭建起来一套web项目或者是构建一个微服务！</p>
+<p>使用sping boot到底有多爽，用下面这幅图来表达</p>
+<p>快速入门</p>
+<p>说了那么多，手痒痒的很，马上来一发试试!</p>
+<p>maven构建项目</p>
+<p>1、访问<a href="http://start.spring.io/" target="_blank" rel="external">http://start.spring.io/</a><br>2、选择构建工具Maven Project、Spring Boot版本1.3.6以及一些工程基本信息，点击“Switch to the full version.”java版本选择1.7，可参考下图所示：</p>
+<p>3、点击Generate Project下载项目压缩包<br>4、解压后，使用eclipse，Import -&gt; Existing Maven Projects -&gt; Next -&gt;选择解压后的文件夹-&gt; Finsh，OK done!<br>项目结构介绍</p>
+<p>如上图所示，Spring Boot的基础结构共三个文件:</p>
+<p>src/main/java 程序开发以及主程序入口<br>src/main/resources 配置文件<br>src/test/java 测试程序<br>另外，spingboot建议的目录结果如下：<br>root package结构：com.example.myproject</p>
+<p>com<br>  +- example<br>    +- myproject<br>      +- Application.java<br>      |<br>      +- domain<br>      |  +- Customer.java<br>      |  +- CustomerRepository.java<br>      |<br>      +- service<br>      |  +- CustomerService.java<br>      |<br>      +- controller<br>      |  +- CustomerController.java<br>      |<br>1、Application.java 建议放到跟目录下面,主要用于做一些框架配置<br>2、domain目录主要用于实体（Entity）与数据访问层（Repository）<br>3、service 层主要是业务类代码<br>4、controller 负责页面访问控制<br>采用默认配置可以省去很多配置，当然也可以根据自己的喜欢来进行更改<br>最后，启动Application main方法，至此一个java项目搭建好了！</p>
+<p>引入web模块</p>
+<p>1、pom.xml中添加支持web的模块：</p>
+<p><dependency><br>        <groupid>org.springframework.boot</groupid><br>        <artifactid>spring-boot-starter-web</artifactid><br> </dependency><br>pom.xml文件中默认有两个模块：</p>
+<p>spring-boot-starter ：核心模块，包括自动配置支持、日志和YAML；</p>
+<p>spring-boot-starter-test ：测试模块，包括JUnit、Hamcrest、Mockito。</p>
+<p>2、编写controller内容：</p>
+<p>@RestController<br>public class HelloWorldController {<br>    @RequestMapping(“/hello”)<br>    public String index() {<br>        return “Hello World”;<br>    }<br>}<br>@RestController 的意思就是controller里面的方法都以json格式输出，不用再写什么jackjson配置的了！</p>
+<p>3、启动主程序，打开浏览器访问<a href="http://localhost:8080/hello，就可以看到效果了，有木有很简单！" target="_blank" rel="external">http://localhost:8080/hello，就可以看到效果了，有木有很简单！</a></p>
+<p>如何做单元测试</p>
+<p>打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。</p>
+<p>@RunWith(SpringJUnit4ClassRunner.class)<br>@SpringApplicationConfiguration(classes = MockServletContext.class)<br>@WebAppConfiguration<br>public class HelloWorldControlerTests {<br>    private MockMvc mvc;<br>    @Before<br>    public void setUp() throws Exception {<br>        mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();<br>    }<br>    @Test<br>    public void getHello() throws Exception {<br>    mvc.perform(MockMvcRequestBuilders.get(“/hello”).accept(MediaType.APPLICATION_JSON))<br>                .andExpect(MockMvcResultMatchers.status().isOk())<br>                .andDo(MockMvcResultHandlers.print())<br>                .andReturn();<br>    }<br>}<br>开发环境的调试</p>
+<p>热启动在正常开发项目中已经很常见了吧，虽然平时开发web项目过程中，改动项目启重启总是报错；但springBoot对调试支持很好，修改之后可以实时生效，需要添加以下的配置：</p>
+ <dependencies><br>    <dependency><br>        <groupid>org.springframework.boot</groupid><br>        <artifactid>spring-boot-devtools</artifactid><br>        <optional>true</optional><br>    </dependency><br></dependencies>
+
+<p><build><br>    <plugins><br>        <plugin><br>            <groupid>org.springframework.boot</groupid><br>            <artifactid>spring-boot-maven-plugin</artifactid><br>            <configuration><br>                <fork>true</fork><br>            </configuration><br>        </plugin><br></plugins><br></build><br>该模块在完整的打包环境下运行的时候会被禁用。如果你使用java -jar启动应用或者用一个特定的classloader启动，它会认为这是一个“生产环境”。</p>
+<p>总结</p>
+<p>使用spring boot可以非常方便、快速搭建项目，使我们不用关心框架之间的兼容性，适用版本等各种问题，我们想使用任何东西，仅仅添加一个配置就可以，所以使用sping boot非常适合构建微服务。</p>
+<p>文中所有的代码<a href="https://github.com/ityouknow/spring-boot-starter" target="_blank" rel="external">https://github.com/ityouknow/spring-boot-starter</a></p>
+<p>作者：纯洁的微笑<br>出处：www.ityouknow.com<br>版权所有，欢迎保留原文链接进行转载：)</p>
+<p>作者：纯洁的虫纸<br>链接：<a href="http://www.jianshu.com/p/1d6b0b20f20d" target="_blank" rel="external">http://www.jianshu.com/p/1d6b0b20f20d</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;什么是spring boot&lt;/p&gt;
+&lt;p&gt;Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是spring 
+    
+    </summary>
+    
+      <category term="springboot" scheme="http://yoursite.com/categories/springboot/"/>
+    
+    
+      <category term="springboot" scheme="http://yoursite.com/tags/springboot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux运维完全入门指南</title>
+    <link href="http://yoursite.com/2017/08/24/Linux%E8%BF%90%E7%BB%B4%E5%AE%8C%E5%85%A8%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"/>
+    <id>http://yoursite.com/2017/08/24/Linux运维完全入门指南/</id>
+    <published>2017-08-24T05:27:00.000Z</published>
+    <updated>2017-08-24T05:28:07.617Z</updated>
+    
+    <content type="html"><![CDATA[<p>前几天整理了一下自己入门时候搜集的资料，一边整理一边回忆。</p>
+<p>那时候我还是个小白，用虚拟机装了个CentOS系统来玩，但是总也装不上，在论坛上求助也没人理。半天终于有个人说在某网站看过这个问题，我又找了大半天才找到这个网站，最后也还是没解决问题。就这样，一个系统装了一天半。</p>
+<p>对于初学者，特别是从未接触过深度计算机知识的小白，搜集资料的时间甚至要占到学习时间的一半以上，学起来慢也大都是因为这一点。</p>
+<p>正好资料我也都整理好了，不如就发出来给大家看看。先说明，这里的东西都是些很浅显、只适合小白的东西。毕竟要看高阶内容的人，应该也有能力自己去快速发掘资料了。</p>
+<p>基础入门</p>
+<p>系统简介</p>
+<p>Linux系统结构 详解来源：CSDN博客<br>Linux架构来源：博客园<br>Linux百度百科来源：百度百科<br>为一般人解说什么是Linux来源：马哥Linux运维<br>系统安装</p>
+<p>新手指南： 手把手教你安装 Ubuntu 和 Fedora 来源:Linux中国<br>在UEFI模式下安装Ubuntu 14.04与Windows 8/8.1双启动 来源：Linux中国<br>linux系统安装详细图文教程来源：CSDN<br>虚拟机安装Linux系统图文教程来源：百度经验<br>常用命令</p>
+<p>Linux常用命令大全来源：马哥Linux运维<br>初窥Linux 之 我最常用的20条命令来源：CSDN博客<br>Linux常用命令大全来源：Linux公社<br>软件包安装</p>
+<p>在 Ubuntu 和 Fedora 上安装软件包来源：Linux中国<br>LINUX下安装软件方法命令方法来源：红黑联盟<br>Linux 平台上的软件包管理来源：IBMdeveloperWorks<br>Linux下RPM软件包的安装及卸载来源：51CTO<br>中级进阶</p>
+<p>用户及用户组</p>
+<p>Linux用户管理命令来源：Linux公社<br>Linux的用户和用户组管理来源：博客园<br>Linux 用户和用户组管理来源：菜鸟教程<br>权限管理</p>
+<p>linux权限管理 来源：Chinaunix<br>Linux权限管理来源：博客园<br>普通权限及umask来源：马哥Linux运维<br>linux普通用户获取管理员权限来源：博客园<br>网络相关</p>
+<p>linux下的基本网络配置来源：红黑联盟<br>Linux常用的网络命令来源：博客园<br>linux网络配置来源：百度经验<br>服务器基础</p>
+<p>Linux下LAMP（Apache+PHP+MySql）环境配置来源：博客园<br>Linux下安装Nginx详细图解教程来源：CSDN博客<br>Linux虚拟机下安装配置MySQL来源：Linux中国<br>服务器安全</p>
+<p>Linux 服务器安全技巧来源：Linux中国<br>Linux强化论：15步打造一个安全的Linux服务器来源：REEBUF<br>原创投稿 | 防火墙及NAT服务来源：马哥原创作者胖猴<br>高阶技巧</p>
+<p>正如前文所说，需要高级内容的用户应该已经有了找到资源的方法，所以这里会暂时空置。<br>当然，以后有时间我会一点点搬运过来，但现在还是专注于初级知识吧。</p>
+<p>学习资料</p>
+<p>这里我会推荐一些文字或者视频，仍然专注于小白的入门知识。<br>为了避免广告嫌疑，我将不附带链接。<br>我所推荐的所有的书籍资料你都可以在亚马逊或者其他渠道获得。<br>我所推荐的所有视频资料都是免费的。</p>
+<p>以下是推荐资料：</p>
+<p>各发行版使用手册<br>《鸟哥的Linux私房菜》<br>《Linux命令行与shell脚本编程大全》<br>《马哥带你学Linux从入门到精通》<br>网络社区</p>
+<p>我不准备在这里进行细分，我认为你有足够的能力分辨什么是社区、资讯站、博客、论坛等等形式，所以我把它们全部都放在这里了。<br>同时我要申明，排名不分先后，想起哪个写那个。</p>
+<p>Linux中国<br>CSDN<br>ChinaUnix<br>博客园<br>51CTO<br>腾讯课堂<br>网易云课堂<br>百度传课<br>LinuxOnline(英文)<br>各发行版官网<br>结语</p>
+<p>入门级别的资料已经整理的差不多了。<br>当然，受限于个人的学习经历、使用习惯的等问题，可能还有很多非常棒的学习资料我没有整理出来，欢迎大家补充。<br>对入门级别的新人我还是有话想说：<br>虽然这篇文章整理了比较多的资料，但是别急着收藏。贪多嚼不烂，如果你手上有正在学习的内容，先把它学完。<br>在学习的过程中，尝试判断内容对自己的价值，因为很可能于我价值连城的东西，对你而言却如敝履。</p>
+<p>作者：JokerW<br>链接：<a href="http://www.jianshu.com/p/9a7f1f3d0317" target="_blank" rel="external">http://www.jianshu.com/p/9a7f1f3d0317</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前几天整理了一下自己入门时候搜集的资料，一边整理一边回忆。&lt;/p&gt;
+&lt;p&gt;那时候我还是个小白，用虚拟机装了个CentOS系统来玩，但是总也装不上，在论坛上求助也没人理。半天终于有个人说在某网站看过这个问题，我又找了大半天才找到这个网站，最后也还是没解决问题。就这样，一个系统
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx从听说到学会</title>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Linux运维完全入门指南 | fuzhicheng
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>fuzhicheng</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Linux运维完全入门指南</h2>
+  <p class="post-date">2017-08-24</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><p>前几天整理了一下自己入门时候搜集的资料，一边整理一边回忆。</p>
+<p>那时候我还是个小白，用虚拟机装了个CentOS系统来玩，但是总也装不上，在论坛上求助也没人理。半天终于有个人说在某网站看过这个问题，我又找了大半天才找到这个网站，最后也还是没解决问题。就这样，一个系统装了一天半。</p>
+<p>对于初学者，特别是从未接触过深度计算机知识的小白，搜集资料的时间甚至要占到学习时间的一半以上，学起来慢也大都是因为这一点。</p>
+<p>正好资料我也都整理好了，不如就发出来给大家看看。先说明，这里的东西都是些很浅显、只适合小白的东西。毕竟要看高阶内容的人，应该也有能力自己去快速发掘资料了。</p>
+<p>基础入门</p>
+<p>系统简介</p>
+<p>Linux系统结构 详解来源：CSDN博客<br>Linux架构来源：博客园<br>Linux百度百科来源：百度百科<br>为一般人解说什么是Linux来源：马哥Linux运维<br>系统安装</p>
+<p>新手指南： 手把手教你安装 Ubuntu 和 Fedora 来源:Linux中国<br>在UEFI模式下安装Ubuntu 14.04与Windows 8/8.1双启动 来源：Linux中国<br>linux系统安装详细图文教程来源：CSDN<br>虚拟机安装Linux系统图文教程来源：百度经验<br>常用命令</p>
+<p>Linux常用命令大全来源：马哥Linux运维<br>初窥Linux 之 我最常用的20条命令来源：CSDN博客<br>Linux常用命令大全来源：Linux公社<br>软件包安装</p>
+<p>在 Ubuntu 和 Fedora 上安装软件包来源：Linux中国<br>LINUX下安装软件方法命令方法来源：红黑联盟<br>Linux 平台上的软件包管理来源：IBMdeveloperWorks<br>Linux下RPM软件包的安装及卸载来源：51CTO<br>中级进阶</p>
+<p>用户及用户组</p>
+<p>Linux用户管理命令来源：Linux公社<br>Linux的用户和用户组管理来源：博客园<br>Linux 用户和用户组管理来源：菜鸟教程<br>权限管理</p>
+<p>linux权限管理 来源：Chinaunix<br>Linux权限管理来源：博客园<br>普通权限及umask来源：马哥Linux运维<br>linux普通用户获取管理员权限来源：博客园<br>网络相关</p>
+<p>linux下的基本网络配置来源：红黑联盟<br>Linux常用的网络命令来源：博客园<br>linux网络配置来源：百度经验<br>服务器基础</p>
+<p>Linux下LAMP（Apache+PHP+MySql）环境配置来源：博客园<br>Linux下安装Nginx详细图解教程来源：CSDN博客<br>Linux虚拟机下安装配置MySQL来源：Linux中国<br>服务器安全</p>
+<p>Linux 服务器安全技巧来源：Linux中国<br>Linux强化论：15步打造一个安全的Linux服务器来源：REEBUF<br>原创投稿 | 防火墙及NAT服务来源：马哥原创作者胖猴<br>高阶技巧</p>
+<p>正如前文所说，需要高级内容的用户应该已经有了找到资源的方法，所以这里会暂时空置。<br>当然，以后有时间我会一点点搬运过来，但现在还是专注于初级知识吧。</p>
+<p>学习资料</p>
+<p>这里我会推荐一些文字或者视频，仍然专注于小白的入门知识。<br>为了避免广告嫌疑，我将不附带链接。<br>我所推荐的所有的书籍资料你都可以在亚马逊或者其他渠道获得。<br>我所推荐的所有视频资料都是免费的。</p>
+<p>以下是推荐资料：</p>
+<p>各发行版使用手册<br>《鸟哥的Linux私房菜》<br>《Linux命令行与shell脚本编程大全》<br>《马哥带你学Linux从入门到精通》<br>网络社区</p>
+<p>我不准备在这里进行细分，我认为你有足够的能力分辨什么是社区、资讯站、博客、论坛等等形式，所以我把它们全部都放在这里了。<br>同时我要申明，排名不分先后，想起哪个写那个。</p>
+<p>Linux中国<br>CSDN<br>ChinaUnix<br>博客园<br>51CTO<br>腾讯课堂<br>网易云课堂<br>百度传课<br>LinuxOnline(英文)<br>各发行版官网<br>结语</p>
+<p>入门级别的资料已经整理的差不多了。<br>当然，受限于个人的学习经历、使用习惯的等问题，可能还有很多非常棒的学习资料我没有整理出来，欢迎大家补充。<br>对入门级别的新人我还是有话想说：<br>虽然这篇文章整理了比较多的资料，但是别急着收藏。贪多嚼不烂，如果你手上有正在学习的内容，先把它学完。<br>在学习的过程中，尝试判断内容对自己的价值，因为很可能于我价值连城的东西，对你而言却如敝履。</p>
+<p>作者：JokerW<br>链接：<a href="http://www.jianshu.com/p/9a7f1f3d0317" target="_blank" rel="external">http://www.jianshu.com/p/9a7f1f3d0317</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#linux" >
+    <span class="tag-code">linux</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/08/24/Linux运维完全入门指南/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Linux运维完全入门指南",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

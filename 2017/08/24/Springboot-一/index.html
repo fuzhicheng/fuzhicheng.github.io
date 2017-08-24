@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Springboot(一) | fuzhicheng
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>fuzhicheng</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Springboot(一)</h2>
+  <p class="post-date">2017-08-24</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><p>什么是spring boot</p>
+<p>Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是spring boot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合了所有的jar包，spring boot整合了所有的框架（不知道这样比喻是否合适）。</p>
+<p>使用spring boot有什么好处</p>
+<p>其实就是简单、快速、方便！平时如果我们需要搭建一个spring web项目的时候需要怎么做呢？</p>
+<p>1）配置web.xml，加载spring和spring mvc<br>2）配置数据库连接、配置spring事务<br>3）配置加载配置文件的读取，开启注解<br>4）配置日志文件<br>…<br>配置完成之后部署tomcat 调试<br>…<br>现在非常流行微服务，如果我这个项目仅仅只是需要发送一个邮件，如果我的项目仅仅是生产一个积分；我都需要这样折腾一遍!</p>
+<p>但是如果使用spring boot呢？<br>很简单，我仅仅只需要非常少的几个配置就可以迅速方便的搭建起来一套web项目或者是构建一个微服务！</p>
+<p>使用sping boot到底有多爽，用下面这幅图来表达</p>
+<p>快速入门</p>
+<p>说了那么多，手痒痒的很，马上来一发试试!</p>
+<p>maven构建项目</p>
+<p>1、访问<a href="http://start.spring.io/" target="_blank" rel="external">http://start.spring.io/</a><br>2、选择构建工具Maven Project、Spring Boot版本1.3.6以及一些工程基本信息，点击“Switch to the full version.”java版本选择1.7，可参考下图所示：</p>
+<p>3、点击Generate Project下载项目压缩包<br>4、解压后，使用eclipse，Import -&gt; Existing Maven Projects -&gt; Next -&gt;选择解压后的文件夹-&gt; Finsh，OK done!<br>项目结构介绍</p>
+<p>如上图所示，Spring Boot的基础结构共三个文件:</p>
+<p>src/main/java 程序开发以及主程序入口<br>src/main/resources 配置文件<br>src/test/java 测试程序<br>另外，spingboot建议的目录结果如下：<br>root package结构：com.example.myproject</p>
+<p>com<br>  +- example<br>    +- myproject<br>      +- Application.java<br>      |<br>      +- domain<br>      |  +- Customer.java<br>      |  +- CustomerRepository.java<br>      |<br>      +- service<br>      |  +- CustomerService.java<br>      |<br>      +- controller<br>      |  +- CustomerController.java<br>      |<br>1、Application.java 建议放到跟目录下面,主要用于做一些框架配置<br>2、domain目录主要用于实体（Entity）与数据访问层（Repository）<br>3、service 层主要是业务类代码<br>4、controller 负责页面访问控制<br>采用默认配置可以省去很多配置，当然也可以根据自己的喜欢来进行更改<br>最后，启动Application main方法，至此一个java项目搭建好了！</p>
+<p>引入web模块</p>
+<p>1、pom.xml中添加支持web的模块：</p>
+<p><dependency><br>        <groupid>org.springframework.boot</groupid><br>        <artifactid>spring-boot-starter-web</artifactid><br> </dependency><br>pom.xml文件中默认有两个模块：</p>
+<p>spring-boot-starter ：核心模块，包括自动配置支持、日志和YAML；</p>
+<p>spring-boot-starter-test ：测试模块，包括JUnit、Hamcrest、Mockito。</p>
+<p>2、编写controller内容：</p>
+<p>@RestController<br>public class HelloWorldController {<br>    @RequestMapping(“/hello”)<br>    public String index() {<br>        return “Hello World”;<br>    }<br>}<br>@RestController 的意思就是controller里面的方法都以json格式输出，不用再写什么jackjson配置的了！</p>
+<p>3、启动主程序，打开浏览器访问<a href="http://localhost:8080/hello，就可以看到效果了，有木有很简单！" target="_blank" rel="external">http://localhost:8080/hello，就可以看到效果了，有木有很简单！</a></p>
+<p>如何做单元测试</p>
+<p>打开的src/test/下的测试入口，编写简单的http请求来测试；使用mockmvc进行，利用MockMvcResultHandlers.print()打印出执行结果。</p>
+<p>@RunWith(SpringJUnit4ClassRunner.class)<br>@SpringApplicationConfiguration(classes = MockServletContext.class)<br>@WebAppConfiguration<br>public class HelloWorldControlerTests {<br>    private MockMvc mvc;<br>    @Before<br>    public void setUp() throws Exception {<br>        mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();<br>    }<br>    @Test<br>    public void getHello() throws Exception {<br>    mvc.perform(MockMvcRequestBuilders.get(“/hello”).accept(MediaType.APPLICATION_JSON))<br>                .andExpect(MockMvcResultMatchers.status().isOk())<br>                .andDo(MockMvcResultHandlers.print())<br>                .andReturn();<br>    }<br>}<br>开发环境的调试</p>
+<p>热启动在正常开发项目中已经很常见了吧，虽然平时开发web项目过程中，改动项目启重启总是报错；但springBoot对调试支持很好，修改之后可以实时生效，需要添加以下的配置：</p>
+ <dependencies><br>    <dependency><br>        <groupid>org.springframework.boot</groupid><br>        <artifactid>spring-boot-devtools</artifactid><br>        <optional>true</optional><br>    </dependency><br></dependencies>
+
+<p><build><br>    <plugins><br>        <plugin><br>            <groupid>org.springframework.boot</groupid><br>            <artifactid>spring-boot-maven-plugin</artifactid><br>            <configuration><br>                <fork>true</fork><br>            </configuration><br>        </plugin><br></plugins><br></build><br>该模块在完整的打包环境下运行的时候会被禁用。如果你使用java -jar启动应用或者用一个特定的classloader启动，它会认为这是一个“生产环境”。</p>
+<p>总结</p>
+<p>使用spring boot可以非常方便、快速搭建项目，使我们不用关心框架之间的兼容性，适用版本等各种问题，我们想使用任何东西，仅仅添加一个配置就可以，所以使用sping boot非常适合构建微服务。</p>
+<p>文中所有的代码<a href="https://github.com/ityouknow/spring-boot-starter" target="_blank" rel="external">https://github.com/ityouknow/spring-boot-starter</a></p>
+<p>作者：纯洁的微笑<br>出处：www.ityouknow.com<br>版权所有，欢迎保留原文链接进行转载：)</p>
+<p>作者：纯洁的虫纸<br>链接：<a href="http://www.jianshu.com/p/1d6b0b20f20d" target="_blank" rel="external">http://www.jianshu.com/p/1d6b0b20f20d</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#springboot" >
+    <span class="tag-code">springboot</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <div id="comments"></div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/08/24/Springboot-一/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Springboot(一)",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
