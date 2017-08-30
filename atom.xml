@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-24T05:30:04.675Z</updated>
+  <updated>2017-08-30T01:54:58.793Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>maven打包替换配置文件</title>
+    <link href="http://yoursite.com/2017/08/30/maven%E6%89%93%E5%8C%85%E6%9B%BF%E6%8D%A2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2017/08/30/maven打包替换配置文件/</id>
+    <published>2017-08-30T01:53:00.000Z</published>
+    <updated>2017-08-30T01:54:58.793Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="maven打包替换文件"><a href="#maven打包替换文件" class="headerlink" title="maven打包替换文件"></a>maven打包替换文件</h2><hr>
+<blockquote>
+<p><strong>maven</strong>不同环境替换不同配置文件，使用filters文件夹下<code>测试环境</code>，<code>开发环境</code>，<code>生产环境</code>配置文件替换打包，主要用到<code>maven-war-plugin</code>，<code>profile</code>.</p>
+</blockquote>
+<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><blockquote>
+<p> 开发环境</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;profile&gt;</div><div class="line">    &lt;!-- 本地开发环境 --&gt;</div><div class="line">    &lt;id&gt;dev&lt;/id&gt;</div><div class="line">    &lt;properties&gt;</div><div class="line">        &lt;package.environment&gt;dev&lt;/package.environment&gt;</div><div class="line">    &lt;/properties&gt;</div><div class="line">    &lt;activation&gt;</div><div class="line">        &lt;！--默认环境--&gt;</div><div class="line">        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</div><div class="line">    &lt;/activation&gt;</div><div class="line">&lt;/profile&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>测试环境</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;profile&gt;</div><div class="line">    &lt;!-- 测试环境 --&gt;</div><div class="line">    &lt;id&gt;test&lt;/id&gt;</div><div class="line">    &lt;properties&gt;</div><div class="line">        &lt;package.environment&gt;test&lt;/package.environment&gt;</div><div class="line">    &lt;/properties&gt;</div><div class="line">&lt;/profile&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>生产环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;profile&gt;</div><div class="line">    &lt;!-- 生产环境 --&gt;</div><div class="line">    &lt;id&gt;prod&lt;/id&gt;</div><div class="line">    &lt;properties&gt;</div><div class="line">        &lt;package.environment&gt;prod&lt;/package.environment&gt;</div><div class="line">    &lt;/properties&gt;</div><div class="line">&lt;/profile&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="maven-war-plugin"><a href="#maven-war-plugin" class="headerlink" title="maven war plugin"></a>maven war plugin</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;war-version&#125;&lt;/version&gt;</div><div class="line">    &lt;configuration&gt;</div><div class="line">        &lt;warName&gt;ROOT&lt;/warName&gt;</div><div class="line">        &lt;webResources&gt;</div><div class="line">            &lt;resource&gt;</div><div class="line">                &lt;directory&gt;filters/$&#123;package.environment&#125;/properties&lt;/directory&gt;</div><div class="line">                &lt;targetPath&gt;WEB-INF/classes&lt;/targetPath&gt;</div><div class="line">                &lt;filtering&gt;true&lt;/filtering&gt;</div><div class="line">            &lt;/resource&gt;</div><div class="line">            &lt;resource&gt;</div><div class="line">                &lt;directory&gt;filters/$&#123;package.environment&#125;/common&lt;/directory&gt;</div><div class="line">                &lt;targetPath&gt;Contents&lt;/targetPath&gt;</div><div class="line">                &lt;filtering&gt;true&lt;/filtering&gt;</div><div class="line">            &lt;/resource&gt;</div><div class="line">        &lt;/webResources&gt;</div><div class="line">    &lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;maven打包替换文件&quot;&gt;&lt;a href=&quot;#maven打包替换文件&quot; class=&quot;headerlink&quot; title=&quot;maven打包替换文件&quot;&gt;&lt;/a&gt;maven打包替换文件&lt;/h2&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;maven&lt;/s
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="http://yoursite.com/tags/maven/"/>
+    
+  </entry>
   
   <entry>
     <title>Springboot(一)</title>
